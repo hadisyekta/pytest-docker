@@ -2,6 +2,7 @@ import pytest
 
 from scripts import data_processor
 
+# we call this test as Happy, because we send a healthy and good file, so we expect to pass all the tests
 
 def test_csv_reader_header_fields(process_data_function):
     """
@@ -47,8 +48,7 @@ def test_csv_reader_data_contents(process_data_function):
 
 @pytest.fixture(scope="module")
 def city_list_location():
-    # return 'tests/resources/cities/clean_map.csv'
-    return 'tests/resources/cities/malformed_map.csv'
+    return 'tests/resources/cities/clean_map.csv'
 
 
 @pytest.fixture(scope="module")
