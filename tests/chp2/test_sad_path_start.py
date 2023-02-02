@@ -1,6 +1,7 @@
 import pytest
 
 from scripts import data_processor
+# we call this test as Sad, because we send a file witin issue, so we expect to fail all the tests
 
 
 @pytest.fixture(scope="function")

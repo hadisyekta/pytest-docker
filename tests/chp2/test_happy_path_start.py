@@ -47,9 +47,32 @@ def test_csv_reader_data_contents(process_data_function):
 
 @pytest.fixture(scope="module")
 def city_list_location():
-    return 'tests/resources/cities/clean_map.csv'
+    # return 'tests/resources/cities/clean_map.csv'
+    return 'tests/resources/cities/malformed_map.csv'
 
 
 @pytest.fixture(scope="module")
 def process_data_function(city_list_location):
     yield data_processor.csv_reader(city_list_location)
+
+
+def test_myread_csv(my_data_processor_function):
+    data = my_data_processor_function
+    for row in data:
+        assert(isinstance(row['Country'], str))
+        assert(isinstance(row['City'], str))
+        assert(isinstance(row['State_Or_Province'], str))
+        assert(isinstance(row['Lat'], float))
+        assert(isinstance(row['Long'], float))
+        assert(isinstance(row['Altitude'], float))
+    assert len(data) == 180
+
+
+@pytest.fixture(scope="module")
+def get_city_file_location():
+    return 'tests/resources/cities/clean_map.csv'
+
+
+@pytest.fixture(scope="module")
+def my_data_processor_function(get_city_file_location):
+    yield data_processor.mycsv_reader(get_city_file_location)
